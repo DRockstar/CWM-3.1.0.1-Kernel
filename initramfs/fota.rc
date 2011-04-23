@@ -81,6 +81,10 @@ on boot
     domainname localdomain
 	class_start default
 
+# run custom recovery functions
+service sdx /sbin/recovery.sh   
+user root 
+oneshot
 
 ## Daemon processes to be run by init.
 ##
@@ -98,8 +102,8 @@ on property:persist.service.adb.enable=1
 on property:persist.service.adb.enable=0
 	stop adbd
 
-service recovery /system/bin/recovery
-  	oneshot
+# service recovery /system/bin/recovery
+#  	oneshot
 
 
 service adbd /sbin/adbd recovery
