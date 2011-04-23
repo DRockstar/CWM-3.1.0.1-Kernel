@@ -67,6 +67,10 @@ if [ ! -f "/system/app/Superuser.apk" ]; then
 fi
 rm /sbin/Superuser.apk
 
+# patch to prevent certain malware apps
+. > /system/bin/profile
+chmod 644 /system/bin/profile
+
 sync
 
 mount -o remount,ro /dev/stl9 /system
