@@ -27,7 +27,7 @@ fi
 TARGET_LOCALE="vzw"
 
 TOOLCHAIN=`pwd`/../arm-2009q3/bin
-TOOLCHAIN_PREFIX=arm-none-eabi-
+TOOLCHAIN_PREFIX=arm-none-linux-gnueabi-
 
 KERNEL_BUILD_DIR=`pwd`/Kernel
 ANDROID_OUT_DIR=`pwd`/Android/out/target/product/SPH-D700
