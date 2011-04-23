@@ -1,0 +1,51 @@
+#!/system/bin/sh
+# Epic Root Uninstaller by DRockstar
+# Modified for Clean Kernel script
+# assumes alternate busybox install in path
+
+PATH=/sbin:/bin:/system/bin:/system/xbin:/data/local/tmp
+
+busybox mount -o remount,rw /dev/stl9 /system
+busybox mount -o remount,rw / /
+
+for wdir in /system/bin /system/xbin
+do
+  find $wdir -type l | while read line; do
+    btest=`readlink $line | grep "busybox"`
+    if [ "$btest" != "" ]; then
+      rm $line
+      if [ -f $btest ] && [ "$btest" != "/sbin/busybox" ]; then
+        rm $btest
+      fi
+    fi
+  done
+done
+ 
+# List by DRockstar, I have seen all files referenced in various scripts
+# Ordered by folder and filename
+rm /data/dalvik-cache/system@app@Superuser.apk@classes.dex > /dev/null 2>&1
+rm /data/local/root.sh > /dev/null 2>&1
+rm /data/local/tmp/rageagainstthecage-arm5.bin > /dev/null 2>&1
+rm /etc/group > /dev/null 2>&1
+rm /etc/passwd > /dev/null 2>&1
+rm /etc/resolv.conf > /dev/null 2>&1
+rm /system/app/Superuser.apk > /dev/null 2>&1
+rm /system/bin/busybox > /dev/null 2>&1
+rm /system/bin/jk-su > /dev/null 2>&1
+rm /system/bin/joeykrim-root.sh > /dev/null 2>&1
+rm /system/bin/playlogo-orig > /dev/null 2>&1
+rm /system/bin/remount > /dev/null 2>&1
+rm /system/bin/resolv.conf > /dev/null 2>&1
+rm /system/bin/su > /dev/null 2>&1
+rm /system/etc/resolv.conf > /dev/null 2>&1
+rm /system/xbin/busybox > /dev/null 2>&1
+rm /system/xbin/remount > /dev/null 2>$1
+rm /system/xbin/su > /dev/null 2>&1
+
+rm /system/app/Superuser.apk > /dev/null 2>&1
+rm /system/xbin/keytimer > /dev/null 2>&1
+rm /data/local/keytimer > /dev/null 2>&1
+
+busybox mount -o remount,ro /dev/stl9 /system
+busybox mount -o remount,ro / /
+
