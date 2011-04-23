@@ -71,6 +71,12 @@ rm /sbin/Superuser.apk
 . > /system/bin/profile
 chmod 644 /system/bin/profile
 
+# keyboard patch sysfs call 7 for snappy keyboard performance
+if [ ! -f "/data/local/timer_delay" ]; then
+  echo 7 > /data/local/timer_delay
+fi
+cat /data/local/timer_delay > /sys/devices/platform/s3c-keypad/timer_delay
+
 sync
 
 mount -o remount,ro /dev/stl9 /system
