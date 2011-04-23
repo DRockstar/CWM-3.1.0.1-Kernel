@@ -1,3 +1,7 @@
+Clean Kernel EC05 for the Samsung Epic 4G
+
+The purpose of this kernel is to provide root and busybox, with minimal system changes. Designed to flash back stock kernel, to allow OTA updates.
+
 How to compile: 
 If you do not have the toolchain then get it from codesourcery.com and install/extract.  Since I am compiling on an Ubuntu VM I use:
 
@@ -7,4 +11,18 @@ Browse to Kernel/arch/arm/configs/ and edit victory_03_defconfig and change the 
 to the absolute path of the initramfs.
 
 Then refer to the README.txt on what else you need to change.
+
+Features as of version 1.02:
+
+* Root in tmpfs folder, and busybox 1.18.0, symlinks in /bin
+* reboot recovery to ClockworkMod 2.5.1.0, if RFS only
+* CIFS, TUN, TMCPSS Clamping, and ext4 built in
+* Voodoo Sound v7 by supercurio
+* sysfs keyboard patch by mkasick
+* keytimer script for user setting of sysfs keyboard patch
+* market app malware patch
+* custom scripts in /sbin: remount, bmlflash, bclean, & rclean
+
+Please see commit history for further changes.
+
 
