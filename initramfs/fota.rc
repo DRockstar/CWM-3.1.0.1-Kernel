@@ -48,6 +48,7 @@ on init
 
 	
     #Thomas Ryu, Cache 
+    mount ext4 /dev/block/stl11 /cache nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
     mount rfs /dev/block/stl11 /cache nosuid nodev check=no
     chown system cache /cache
     chmod 0770 /cache
@@ -64,11 +65,11 @@ on init
     #mount rfs /dev/block/mmcblk0p2 /data nosuid nodev check=no
     #chown system system /data
     #chmod 0771 /data
-
+    mount ext4 /dev/block/stl10 /data nosuid nodev noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
     mount rfs /dev/block/stl10 /data nosuid nodev check=no
     chown system system /data
     chmod 0771 /data
-   
+   	mount ext4 /dev/block/stl9 /system noatime nodiratime errors=continue nobh data=writeback barrier=0 noauto_da_alloc
   	mount rfs /dev/block/stl9 /system check=no
 
 on boot
@@ -80,6 +81,7 @@ on boot
     domainname localdomain
 	class_start default
 
+
 ## Daemon processes to be run by init.
 ##
 #service console /system/bin/sh
@@ -87,8 +89,8 @@ on boot
 
 
 # adbd is controlled by the persist.service.adb.enable system property
-service adbd /sbin/adbd
-	disabled
+# service adbd /sbin/adbd
+# 	disabled
 
 on property:persist.service.adb.enable=1
 	start adbd
@@ -97,7 +99,7 @@ on property:persist.service.adb.enable=0
 	stop adbd
 
 service recovery /system/bin/recovery
-	oneshot
+  	oneshot
 
 
-#service adbd /sbin/adbd recovery
+service adbd /sbin/adbd recovery
