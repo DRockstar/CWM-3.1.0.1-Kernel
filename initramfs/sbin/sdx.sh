@@ -5,13 +5,19 @@
 /sbin/busybox mount -o remount,rw / /
 
 # Install busybox
+/sbin/busybox mkdir /bin
+/sbin/busybox2 rm -rf /sbin/busybox
+/sbin/busybox2 mv /sbin/busybox2 /sbin/busybox
 /sbin/busybox --install -s /bin
+rm -rf /system/xbin/busybox
 ln -s /sbin/busybox /system/xbin/busybox
+rm -rf /bin/ls
+rm -rf /sbin/recovery
+rm -rf /res/sbin
 sync
 
 # Fix permissions in /sbin, just in case
 chmod 755 /sbin/*
-chmod 06755 /sbin/su
 
 # Fix screwy ownerships
 for blip in conf default.prop fota.rc init init.goldfish.rc init.rc init.smdkc110.rc lib lpm.rc modules recovery.rc res sbin
@@ -42,8 +48,8 @@ rm /system/bin/jk-su
 ln -s /sdx/su /system/bin/su
 ln -s /sdx/su /system/xbin/su
 # remove su in problematic locations
-rm /bin/su
-rm /sbin/su
+rm -rf /bin/su
+rm -rf /sbin/su
 
 # fix busybox DNS while system is read-write
 if [ ! -f "/system/etc/resolv.conf" ]; then
