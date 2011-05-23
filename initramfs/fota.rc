@@ -98,7 +98,7 @@ on property:persist.service.adb.enable=1
 on property:persist.service.adb.enable=0
 	stop adbd
 
-service recovery /system/bin/recovery
+service recovery /sbin/recovery
   	oneshot
 
 
