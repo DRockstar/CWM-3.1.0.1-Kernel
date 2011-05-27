@@ -1,0 +1,20 @@
+ui_print("");ui_print("");ui_print("");ui_print("");
+ui_print("================================================");
+ui_print("ClockworkMod 3.1.0.1 for the Epic 4G");
+ui_print("ClockworkMod written by koush");
+ui_print("recovery binary compiled by DRockstar");
+ui_print("recovery kernel and package by DRockstar");
+ui_print("================================================");
+
+ui_print("Extracting Recovery Kernel");
+package_extract_dir("kernel", "/tmp");
+set_perm(0, 0, 0755, "/tmp/bmlwrite");
+set_progress(0.800000);
+
+set_progress(0.900000);
+ui_print("Flashing Recovery");
+run_program("/tmp/bmlwrite", "/tmp/zImage", "/dev/block/bml8");
+
+ui_print("");
+ui_print("Installation Successful");
+ui_print("Please Reboot");
