@@ -1,6 +1,6 @@
 ui_print("");ui_print("");ui_print("");ui_print("");
 ui_print("================================================");
-ui_print("ClockworkMod 3.1.0.1 for the Epic 4G");
+ui_print("ClockworkMod 3.1.0.1 Purple for the Epic 4G");
 ui_print("ClockworkMod written by koush");
 ui_print("recovery binary compiled by DRockstar");
 ui_print("recovery kernel and package by DRockstar");
